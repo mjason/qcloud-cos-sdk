@@ -202,7 +202,7 @@ module QcloudCos
       bucket = validates(path, options, 'both')
       url = generate_rest_url(bucket, path)
 
-      query = { 'op' => 'update', 'biz_attr' => biz_attr, 'custom_headers' => options[:custom_headers]}
+      query = { 'op' => 'update', 'biz_attr' => biz_attr, 'flag' => 0x40 | 0x80, custom_headers' => options[:custom_headers]}
 
       resource = "/#{bucket}#{Utils.url_encode(path)}"
       headers = {
