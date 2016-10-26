@@ -197,12 +197,12 @@ module QcloudCos
     # @option options [String] :bucket (config.bucket_name) 指定当前 bucket, 默认是配置里面的 bucket
     #
     # @return [Hash]
-    def update(path, biz_attr, options = {})
+    def update(path, biz_attr, options = {custom_headers: {}})
       path = fixed_path(path)
       bucket = validates(path, options, 'both')
       url = generate_rest_url(bucket, path)
 
-      query = { 'op' => 'update', 'biz_attr' => biz_attr }
+      query = { 'op' => 'update', 'biz_attr' => biz_attr, 'custom_headers' => options[:custom_headers]}
 
       resource = "/#{bucket}#{Utils.url_encode(path)}"
       headers = {
